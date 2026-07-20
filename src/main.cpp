@@ -10,6 +10,7 @@ int main() {
     using std::vector;
     using std::string;
     using std::ofstream;
+    using std::ifstream;
     
     vector<string> keywords{};
     string userMarkdown{};
@@ -18,11 +19,14 @@ int main() {
 
     cout << "Enter markdown file name:\n  >_";
     getline(cin, fileName);
-    ofstream file(fileName);
+    ifstream mdFile(fileName);
+    ofstream htmlFile("output.html");
+
+    if (!mdFile.is_open()) { cout << "Unknown error opening markdown file.\n"; }
+    if (!htmlFile.is_open()) { cout << "Unknown error opening markdown file.\n"; }
+
 
     if (userMarkdown.rfind("###", 0) == 0) { result.append("<h3>" + userMarkdown.substr(4) + "</h3>"); }
     if (userMarkdown.rfind("##", 0) == 0) { result.append("<h2>" + userMarkdown.substr(3) + "</h2>"); }
     if (userMarkdown.rfind("#", 0) == 0) { result.append("<h1>" + userMarkdown.substr(2) + "</h1>"); }
-
-    cout << result;
 }
