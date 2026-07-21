@@ -38,4 +38,6 @@ int main() {
         else if (line.rfind("##", 0) == 0) { result.append("<h2>" + line.substr(3) + "</h2>"); }
         else if (line.rfind("#", 0) == 0) { result.append("<h1>" + line.substr(2) + "</h1>"); }
     }
+
+    htmlFile << result;
 }
